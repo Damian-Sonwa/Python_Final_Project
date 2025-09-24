@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG 4: Quality Education</title>
+   <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(rgba(0, 119, 182, 0.85), rgba(0, 119, 182, 0.85)), 
+                url('https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover no-repeat fixed;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0077b6;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #0077b6;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #0077b6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #005f8c;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #0077b6;
+    border: 2px solid #0077b6;
+}
+
+.btn-secondary:hover {
+    background: #0077b6;
+    color: white;
+}
+
+/* Main Content */
+main {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+.section {
+    display: none;
+    padding: 2rem 0;
+    min-height: calc(100vh - 80px);
+}
+
+.section.active {
+    display: block;
+}
+
+/* Auth Section */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+}
+
+.auth-form {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0077b6;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0077b6;
+}
+
+.error {
+    color: #0077b6;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.auth-switch a {
+    color: #0077b6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Home Section */
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+    color: white;
+}
+
+.sdg-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0077b6;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Content Cards */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+    color: #0077b6;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.card p {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+/* Resources */
+.resource-category {
+    margin-bottom: 2rem;
+}
+
+.resource-category h3 {
+    color: #0077b6;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0077b6;
+}
+
+.resource-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.resource-link {
+    display: block;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    border-left: 4px solid #0077b6;
+}
+
+.resource-link:hover {
+    background: rgba(0, 119, 182, 0.1);
+    transform: translateX(5px);
+}
+
+.resource-link h4 {
+    color: #0077b6;
+    margin-bottom: 0.5rem;
+}
+
+/* Study Tracker */
+.tracker-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+.badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.badge {
+    background: #0077b6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.badge.earned {
+    background: #28a745;
+}
+
+.sessions-list {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.session-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.session-item:last-child {
+    border-bottom: none;
+}
+
+/* Community */
+.community-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.community-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.community-form textarea:focus {
+    outline: none;
+    border-color: #0077b6;
+}
+
+.posts-container {
+    display: grid;
+    gap: 1rem;
+}
+
+.post {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-left: 4px solid #0077b6;
+}
+
+.post-meta {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+/* Daily Knowledge */
+.knowledge-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.knowledge-card h3 {
+    color: #0077b6;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.knowledge-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .auth-buttons {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section.active {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Global Goal 4: Quality Education for All</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showSection('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showSection('resources')">Resources</a></li>
+                <li><a href="#" onclick="showSection('knowledge')">Daily Knowledge</a></li>
+                <li><a href="#" onclick="showSection('tracker')">Study Tracker</a></li>
+                <li><a href="#" onclick="showSection('community')">Community</a></li>
+            </ul>
+            <div class="auth-buttons" id="authButtons">
+                <a href="#" class="btn btn-secondary" onclick="showSection('auth')">Login</a>
+                <a href="#" class="btn btn-primary" onclick="showSection('auth')">Sign Up</a>
+            </div>
+            <div class="user-info hidden" id="userInfo">
+                <span id="userName"></span>
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Authentication Section -->
+        <section id="auth" class="section">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-form">
+                        <h2 id="authTitle">Login</h2>
+                        <form id="authForm">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                                <div class="error" id="emailError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" required>
+                                <div class="error" id="passwordError"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                        </form>
+                        <div class="auth-switch">
+                            <p>Don't have an account? <a href="#" id="authSwitch">Sign up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <div class="sdg-logo">SDG 4</div>
+                    <h1>Quality Education</h1>
+                    <p>Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+<section id="resources" class="section">
+    <div class="container">
+        <h2 style="text-align: center; color: white; margin-bottom: 2rem; font-size: 2.5rem;">Learning Resources</h2>
+        
+        <div class="resource-category">
+            <div class="card">
+                <h3>📚 Literacy</h3>
+                <div class="resource-links">
+                    <a href="https://www.khanacademy.org/humanities/reading-comprehension" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Reading" style="width:40px; margin-bottom:10px;">
+                        <h4>Khan Academy - Reading</h4>
+                        <p>Comprehensive reading comprehension courses</p>
+                    </a>
+                    <a href="https://www.coursera.org/learn/learning-how-to-learn" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2965/2965358.png" alt="Learning" style="width:40px; margin-bottom:10px;">
+                        <h4>Coursera - Learning How to Learn</h4>
+                        <p>Master effective learning techniques</p>
+                    </a>
+                    <a href="https://en.unesco.org/themes/literacy" target="_blank" class="resource-link">
+                        <img src="https://www.britannica.com/question/How-does-UNESCO-define-literacy" alt="UNESCO Literacy" style="width:40px; margin-bottom:10px;">
+                        <h4>UNESCO Literacy</h4>
+                        <p>Global literacy initiatives and resources</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="resource-category">
+            <div class="card">
+                <h3>🔬 STEM</h3>
+                <div class="resource-links">
+                    <a href="https://www.khanacademy.org/math" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1048/1048941.png" alt="Math" style="width:40px; margin-bottom:10px;">
+                        <h4>Khan Academy - Math</h4>
+                        <p>From basic arithmetic to advanced calculus</p>
+                    </a>
+                    <a href="https://www.coursera.org/browse/physical-science-and-engineering" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2947/2947987.png" alt="Science" style="width:40px; margin-bottom:10px;">
+                        <h4>Coursera - Science & Engineering</h4>
+                        <p>University-level STEM courses</p>
+                    </a>
+                    <a href="https://www.edx.org/learn/science" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="edX Science" style="width:40px; margin-bottom:10px;">
+                        <h4>edX - Science</h4>
+                        <p>Free science courses from top universities</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="resource-category">
+            <div class="card">
+                <h3>💻 Digital Skills</h3>
+                <div class="resource-links">
+                    <a href="https://www.codecademy.com/catalog/subject/web-development" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/919/919827.png" alt="Coding" style="width:40px; margin-bottom:10px;">
+                        <h4>Codecademy</h4>
+                        <p>Interactive coding lessons and projects</p>
+                    </a>
+                    <a href="https://www.coursera.org/browse/computer-science" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Computer Science" style="width:40px; margin-bottom:10px;">
+                        <h4>Coursera - Computer Science</h4>
+                        <p>Programming and computer science fundamentals</p>
+                    </a>
+                    <a href="https://www.freecodecamp.org/" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968280.png" alt="freeCodeCamp" style="width:40px; margin-bottom:10px;">
+                        <h4>freeCodeCamp</h4>
+                        <p>Learn to code for free with hands-on projects</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="resource-category">
+            <div class="card">
+                <h3>🛠️ Vocational Training</h3>
+                <div class="resource-links">
+                    <a href="https://www.coursera.org/browse/business" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Business Skills" style="width:40px; margin-bottom:10px;">
+                        <h4>Coursera - Business Skills</h4>
+                        <p>Professional development and business courses</p>
+                    </a>
+                    <a href="https://www.linkedin.com/learning/" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:40px; margin-bottom:10px;">
+                        <h4>LinkedIn Learning</h4>
+                        <p>Professional skills and career development</p>
+                    </a>
+                    <a href="https://www.skillshare.com/" target="_blank" class="resource-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732222.png" alt="Skillshare" style="width:40px; margin-bottom:10px;">
+                        <h4>Skillshare</h4>
+                        <p>Creative and business skills courses</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Daily Knowledge Section -->
+        <section id="knowledge" class="section">
+            <div class="container">
+                <h2 style="text-align: center; color: white; margin-bottom: 2rem; font-size: 2.5rem;">Daily Knowledge Bite</h2>
+                <div class="knowledge-card" id="knowledgeCard">
+                    <h3>💡 Did You Know?</h3>
+                    <p id="knowledgeContent">Loading today's knowledge bite...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Tracker Section -->
+        <section id="tracker" class="section">
+            <div class="container">
+                <h2 style="text-align: center; color: white; margin-bottom: 2rem; font-size: 2.5rem;">Study Tracker</h2>
+                
+                <div class="tracker-form">
+                    <h3>Log Study Session</h3>
+                    <form id="studyForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="subject">Subject/Skill</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="duration">Duration (minutes)</label>
+                                <input type="number" id="duration" min="1" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Log Session</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Your Progress</h3>
+                    <div class="badges" id="badges">
+                        <div class="badge" id="badge-first">First Session</div>
+                        <div class="badge" id="badge-streak">7-Day Streak</div>
+                        <div class="badge" id="badge-hours">10 Hours Total</div>
+                        <div class="badge" id="badge-subjects">5 Different Subjects</div>
+                    </div>
+                    <p><strong>Current Streak:</strong> <span id="currentStreak">0</span> days</p>
+                    <p><strong>Total Study Time:</strong> <span id="totalTime">0</span> minutes</p>
+                </div>
+
+                <div class="sessions-list">
+                    <h3>Recent Sessions</h3>
+                    <div id="sessionsList">
+                        <p style="text-align: center; color: #666;">No study sessions logged yet. Start tracking your learning journey!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="section">
+            <div class="container">
+                <h2 style="text-align: center; color: white; margin-bottom: 2rem; font-size: 2.5rem;">Community</h2>
+                
+                <div class="community-form">
+                    <h3>Share with the Community</h3>
+                    <form id="communityForm">
+                        <div class="form-group">
+                            <label for="postContent">Share a tip, book recommendation, or motivational note:</label>
+                            <textarea id="postContent" placeholder="What would you like to share with fellow learners?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Share Post</button>
+                    </form>
+                </div>
+
+                <div class="posts-container" id="postsContainer">
+                    <div class="post">
+                        <div class="post-meta">Community • Welcome Post</div>
+                        <p>Welcome to our learning community! Share your favorite educational resources, study tips, or motivational quotes to help fellow learners on their journey. Together, we can achieve SDG 4: Quality Education for all! 📚✨</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let isSignUp = false;
+
+        // Knowledge bites data
+        const knowledgeBites = [
+            "Education is the most powerful weapon which you can use to change the world. - Nelson Mandela",
+            "The beautiful thing about learning is that no one can take it away from you. - B.B. King",
+            "An investment in knowledge pays the best interest. - Benjamin Franklin",
+            "Education is not preparation for life; education is life itself. - John Dewey",
+            "The more that you read, the more things you will know. The more that you learn, the more places you'll go. - Dr. Seuss",
+            "Learning never exhausts the mind. - Leonardo da Vinci",
+            "Education is the passport to the future, for tomorrow belongs to those who prepare for it today. - Malcolm X",
+            "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice. - Brian Herbert"
+        ];
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            loadDailyKnowledge();
+            loadStudyData();
+            loadCommunityPosts();
+            setupEventListeners();
+        });
+
+        // Event listeners
+        function setupEventListeners() {
+            // Auth form
+            document.getElementById('authForm').addEventListener('submit', handleAuth);
+            document.getElementById('authSwitch').addEventListener('click', toggleAuthMode);
+            
+            // Study form
+            document.getElementById('studyForm').addEventListener('submit', logStudySession);
+            
+            // Community form
+            document.getElementById('communityForm').addEventListener('submit', addCommunityPost);
+        }
+
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the corresponding nav link
+            const activeLink = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Close mobile menu
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Authentication
+        function checkAuthStatus() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                currentUser = JSON.parse(user);
+                showUserInterface();
+            }
+        }
+
+        function showUserInterface() {
+            document.getElementById('authButtons').classList.add('hidden');
+            document.getElementById('userInfo').classList.remove('hidden');
+            document.getElementById('userName').textContent = currentUser.email;
+        }
+
+        function hideUserInterface() {
+            document.getElementById('authButtons').classList.remove('hidden');
+            document.getElementById('userInfo').classList.add('hidden');
+        }
+
+        function toggleAuthMode() {
+            isSignUp = !isSignUp;
+            const title = document.getElementById('authTitle');
+            const submitBtn = document.querySelector('#authForm button');
+            const switchText = document.getElementById('authSwitch');
+            const switchContainer = switchText.parentElement;
+            
+            if (isSignUp) {
+                title.textContent = 'Sign Up';
+                submitBtn.textContent = 'Sign Up';
+                switchContainer.innerHTML = '<p>Already have an account? <a href="#" id="authSwitch">Login</a></p>';
+            } else {
+                title.textContent = 'Login';
+                submitBtn.textContent = 'Login';
+                switchContainer.innerHTML = '<p>Don\'t have an account? <a href="#" id="authSwitch">Sign up</a></p>';
+            }
+            
+            // Re-attach event listener
+            document.getElementById('authSwitch').addEventListener('click', toggleAuthMode);
+            
+            // Clear form
+            document.getElementById('authForm').reset();
+            clearErrors();
+        }
+
+        function handleAuth(e) {
+            e.preventDefault();
+            clearErrors();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!validateEmail(email)) {
+                showError('emailError', 'Please enter a valid email address');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('passwordError', 'Password must be at least 6 characters long');
+                return;
+            }
+            
+            if (isSignUp) {
+                // Sign up
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                if (users.find(user => user.email === email)) {
+                    showError('emailError', 'Email already exists');
+                    return;
+                }
+                
+                const newUser = { email, password, joinDate: new Date().toISOString() };
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                currentUser = newUser;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                showUserInterface();
+                showSection('home');
+                alert('Account created successfully!');
+            } else {
+                // Login
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (!user) {
+                    showError('passwordError', 'Invalid email or password');
+                    return;
+                }
+                
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                showUserInterface();
+                showSection('home');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            hideUserInterface();
+            showSection('home');
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function showError(elementId, message) {
+            document.getElementById(elementId).textContent = message;
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error').forEach(error => {
+                error.textContent = '';
+            });
+        }
+
+        // Daily Knowledge
+        function loadDailyKnowledge() {
+            const today = new Date().getDate();
+            const knowledge = knowledgeBites[today % knowledgeBites.length];
+            document.getElementById('knowledgeContent').textContent = knowledge;
+        }
+
+        // Study Tracker
+        function logStudySession(e) {
+            e.preventDefault();
+            
+            if (!currentUser) {
+                alert('Please login to track your study sessions');
+                showSection('auth');
+                return;
+            }
+            
+            const subject = document.getElementById('subject').value;
+            const duration = parseInt(document.getElementById('duration').value);
+            
+            const session = {
+                subject,
+                duration,
+                date: new Date().toISOString(),
+                user: currentUser.email
+            };
+            
+            // Save session
+            const sessions = JSON.parse(localStorage.getItem('studySessions') || '[]');
+            sessions.unshift(session);
+            localStorage.setItem('studySessions', JSON.stringify(sessions));
+            
+            // Update display
+            loadStudyData();
+            
+            // Clear form
+            document.getElementById('studyForm').reset();
+            
+            alert('Study session logged successfully!');
+        }
+
+        function loadStudyData() {
+            if (!currentUser) return;
+            
+            const sessions = JSON.parse(localStorage.getItem('studySessions') || '[]')
+                .filter(session => session.user === currentUser.email);
+            
+            // Update stats
+            const totalTime = sessions.reduce((sum, session) => sum + session.duration, 0);
+            document.getElementById('totalTime').textContent = totalTime;
+            
+            // Calculate streak
+            const streak = calculateStreak(sessions);
+            document.getElementById('currentStreak').textContent = streak;
+            
+            // Update badges
+            updateBadges(sessions, totalTime, streak);
+            
+            // Display recent sessions
+            displaySessions(sessions);
+        }
+
+        function calculateStreak(sessions) {
+            if (sessions.length === 0) return 0;
+            
+            const today = new Date();
+            const dates = [...new Set(sessions.map(s => new Date(s.date).toDateString()))].sort((a, b) => new Date(b) - new Date(a));
+            
+            let streak = 0;
+            let currentDate = today;
+            
+            for (const dateStr of dates) {
+                const sessionDate = new Date(dateStr);
+                const diffDays = Math.floor((currentDate - sessionDate) / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === streak) {
+                    streak++;
+                } else if (diffDays === streak + 1 && streak === 0) {
+                    streak = 1;
+                } else {
+                    break;
+                }
+                
+                currentDate = sessionDate;
+            }
+            
+            return streak;
+        }
+
+        function updateBadges(sessions, totalTime, streak) {
+            // First session badge
+            if (sessions.length > 0) {
+                document.getElementById('badge-first').classList.add('earned');
+            }
+            
+            // Streak badge
+            if (streak >= 7) {
+                document.getElementById('badge-streak').classList.add('earned');
+            }
+            
+            // Hours badge
+            if (totalTime >= 600) { // 10 hours = 600 minutes
+                document.getElementById('badge-hours').classList.add('earned');
+            }
+            
+            // Subjects badge
+            const uniqueSubjects = [...new Set(sessions.map(s => s.subject))];
+            if (uniqueSubjects.length >= 5) {
+                document.getElementById('badge-subjects').classList.add('earned');
+            }
+        }
+
+        function displaySessions(sessions) {
+            const container = document.getElementById('sessionsList');
+            
+            if (sessions.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">No study sessions logged yet. Start tracking your learning journey!</p>';
+                return;
+            }
+            
+            const recentSessions = sessions.slice(0, 10);
+            container.innerHTML = recentSessions.map(session => `
+                <div class="session-item">
+                    <div>
+                        <strong>${session.subject}</strong>
+                        <div style="font-size: 0.875rem; color: #666;">
+                            ${new Date(session.date).toLocaleDateString()}
+                        </div>
+                    </div>
+                    <div style="font-weight: 500; color: #E5243B;">
+                        ${session.duration} min
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Community
+        function addCommunityPost(e) {
+            e.preventDefault();
+            
+            if (!currentUser) {
+                alert('Please login to share with the community');
+                showSection('auth');
+                return;
+            }
+            
+            const content = document.getElementById('postContent').value;
+            
+            const post = {
+                content,
+                author: currentUser.email,
+                date: new Date().toISOString(),
+                id: Date.now()
+            };
+            
+            // Save post
+            const posts = JSON.parse(localStorage.getItem('communityPosts') || '[]');
+            posts.unshift(post);
+            localStorage.setItem('communityPosts', JSON.stringify(posts));
+            
+            // Update display
+            loadCommunityPosts();
+            
+            // Clear form
+            document.getElementById('postContent').value = '';
+            
+            alert('Post shared successfully!');
+        }
+
+        function loadCommunityPosts() {
+            const posts = JSON.parse(localStorage.getItem('communityPosts') || '[]');
+            const container = document.getElementById('postsContainer');
+            
+            // Keep the welcome post and add user posts
+            const welcomePost = container.querySelector('.post');
+            const userPosts = posts.map(post => `
+                <div class="post">
+                    <div class="post-meta">
+                        ${post.author.split('@')[0]} • ${new Date(post.date).toLocaleDateString()}
+                    </div>
+                    <p>${post.content}</p>
+                </div>
+            `).join('');
+            
+            container.innerHTML = welcomePost.outerHTML + userPosts;
+        }
+    </script>
+</body>
+</html>
